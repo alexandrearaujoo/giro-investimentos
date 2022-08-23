@@ -58,7 +58,7 @@ const Dashboard = () => {
       },
       title: {
         display: true,
-        text: `Resultando em ${resultado.periodo} mes(es)`,
+        text: `Resultado em ${resultado.periodo} mes(es)`,
       },
     },
   };
