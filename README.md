@@ -1,6 +1,6 @@
 ## Giro Investimentos
 
-#Tecnologias utilizadas
+# Tecnologias utilizadas
 
 - Framework: ReactJS
 - Linguagem: Typescript
