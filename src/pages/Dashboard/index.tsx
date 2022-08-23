@@ -48,7 +48,12 @@ export const options = {
   },
 };
 
-const labels = ["Valor investido", "Valor final", "Porcentagem"];
+const labels = [
+  "Valor investido",
+  "Valor final",
+  "Porcentagem",
+  "Periodo em meses",
+];
 
 interface SimulacaoProps {
   valor_investido: number;
@@ -68,11 +73,17 @@ const Dashboard = () => {
     datasets: [
       {
         labels: "TESTE",
-        data: [resultado.valor_investido, resultado.valor_final, porcentagem],
+        data: [
+          resultado.valor_investido,
+          resultado.valor_final,
+          porcentagem,
+          resultado.periodo,
+        ],
         backgroundColor: [
           theme.colors.yellow,
           theme.colors.blue2,
           theme.colors.green,
+          theme.colors.blue1,
         ],
       },
     ],
