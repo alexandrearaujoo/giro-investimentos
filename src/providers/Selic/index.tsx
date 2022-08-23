@@ -55,9 +55,10 @@ export const SelicProvider = ({ children }: Props) => {
   const calcularEmprestimo = (data: EmprestimoProps) => {
     const { valor } = valorSelic;
     const { periodo, valor_investido } = data;
+    const taxaSelic = valor / 100
 
     const resultado =
-      valor_investido * ((valor / 12) * periodo) + valor_investido;
+      valor_investido * ((taxaSelic / 12) * periodo) + valor_investido;
 
     setResultado({
       valor_final: +resultado.toFixed(2),
