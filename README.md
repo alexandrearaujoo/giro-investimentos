@@ -9,7 +9,12 @@
 - Cliente HTTP: Axios
 - Toast: React-hot-toast
 - Validação de formulario: React-hook-form
+- Testes: Jest e Testing-Library/react
 - IDE: Visual Studio Code
+
+## Executando os testes
+
+- Digite ```json yarn test``` no terminal
 
 ## Tela de login
 
