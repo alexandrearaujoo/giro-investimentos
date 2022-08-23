@@ -27,4 +27,4 @@
 
 ## Tela do Dashboard depois da simulação
 
-<img src="https://i.postimg.cc/1RwR9vMc/Captura-de-tela-de-2022-08-23-10-56-58.png"/>
+<img src="https://i.postimg.cc/1RwR9vMc/Captura-de-tela-de-2022-08-23-10-56-58.png" />
