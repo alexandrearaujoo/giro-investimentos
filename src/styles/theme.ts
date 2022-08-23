@@ -4,6 +4,8 @@ const theme = {
     blue2: "#27305d",
     white: "#ffffff",
     black: "#000000",
+    green: "#61CE70",
+    yellow: "#ffc107",
   },
 
   weigthts: {

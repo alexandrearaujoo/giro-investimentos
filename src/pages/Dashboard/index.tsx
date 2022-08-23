@@ -4,7 +4,51 @@ import { Input } from "../../components/Input";
 import { useSelic } from "../../providers/Selic";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { simulacaoSchema } from "../../schemas";
-import { Form, H1, Label, Main, Section, SectionForm, Span } from "./styles";
+import {
+  Form,
+  H1,
+  Label,
+  Main,
+  SectionForm,
+  FirstBgColor,
+  SecondBgColor,
+} from "./styles";
+import { TbChartInfographic } from "react-icons/tb";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
+import theme from "../../styles/theme";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
+export const options = {
+  responsive: true,
+  plugins: {
+    legend: {
+      display: false,
+    },
+    title: {
+      display: true,
+      text: "Resultado",
+    },
+  },
+};
+
+const labels = ["Valor investido", "Valor final", "Porcentagem"];
 
 interface SimulacaoProps {
   valor_investido: number;
@@ -14,6 +58,25 @@ interface SimulacaoProps {
 const Dashboard = () => {
   document.title = "Dashboard";
   const { calcularEmprestimo, resultado } = useSelic();
+
+  const lucro = resultado.valor_final - resultado.valor_investido;
+
+  const porcentagem = +Math.ceil((lucro / resultado.valor_investido) * 100);
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        labels: "TESTE",
+        data: [resultado.valor_investido, resultado.valor_final, porcentagem],
+        backgroundColor: [
+          theme.colors.yellow,
+          theme.colors.blue2,
+          theme.colors.green,
+        ],
+      },
+    ],
+  };
 
   const {
     register,
@@ -30,45 +93,49 @@ const Dashboard = () => {
   };
 
   return (
-    <Main>
-      <SectionForm>
-        <Form onSubmit={handleSubmit(onSubmit)}>
-          <H1>Simulação</H1>
-          <Input
-            label="Valor investido"
-            type="number"
-            placeholder="Digite a quantia desejada"
-            step="0.10"
-            {...register("valor_investido")}
-            error={errors.valor_investido?.message}
-          />
-          <Input
-            label="Periodo de investimento"
-            type="number"
-            placeholder="Digite o periodo em meses"
-            {...register("periodo")}
-            error={errors.periodo?.message}
-          />
-          <Button type="submit">Simular</Button>
-        </Form>
-      </SectionForm>
+    <>
+      <FirstBgColor />
+      <SecondBgColor />
+      <Main>
+        <SectionForm>
+          <Form onSubmit={handleSubmit(onSubmit)}>
+            <H1>Simulação</H1>
+            <Input
+              label="Valor investido"
+              type="number"
+              placeholder="Digite a quantia desejada"
+              step="0.10"
+              {...register("valor_investido")}
+              error={errors.valor_investido?.message}
+            />
+            <Input
+              label="Periodo de investimento"
+              type="number"
+              placeholder="Digite o periodo em meses"
+              {...register("periodo")}
+              error={errors.periodo?.message}
+            />
+            <Button type="submit">Simular</Button>
+          </Form>
+        </SectionForm>
+        <div>
+          {resultado.valor_final ? (
+            <Bar
+              options={options}
+              data={data}
+              height={400}
+              style={{ maxWidth: "600" }}
+            />
+          ) : (
+            <>
+              <TbChartInfographic size={45} />
 
-      {resultado.valor_final && (
-        <Section>
-          <div>
-            <Label>
-              Valor investido: <Span>R$ {resultado.valor_investido}</Span>
-            </Label>
-            <Label>
-              Periodo de investimento: <Span>{resultado.periodo}</Span>
-            </Label>
-            <Label>
-              Valor final: <Span>R$ {resultado.valor_final.toFixed(2)}</Span>
-            </Label>
-          </div>
-        </Section>
-      )}
-    </Main>
+              <Label>Nenhum resultado</Label>
+            </>
+          )}
+        </div>
+      </Main>
+    </>
   );
 };
 

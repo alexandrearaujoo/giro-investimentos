@@ -29,7 +29,7 @@ interface Resultado {
 
 interface SelicContextData {
   valorSelic: ValorSelic;
-  resultado: Resultado
+  resultado: Resultado;
   getValue: () => Promise<void>;
   calcularEmprestimo: (data: EmprestimoProps) => void;
 }
@@ -37,7 +37,10 @@ interface SelicContextData {
 const SelicContext = createContext<SelicContextData>({} as SelicContextData);
 
 export const SelicProvider = ({ children }: Props) => {
-  const [valorSelic, setValorSelic] = useState<ValorSelic>({} as ValorSelic);
+  const [valorSelic, setValorSelic] = useState<ValorSelic>({
+    name: "SELIC",
+    valor: 13.75,
+  } as ValorSelic);
   const [resultado, setResultado] = useState<Resultado>({} as Resultado);
 
   useEffect(() => {
@@ -57,7 +60,7 @@ export const SelicProvider = ({ children }: Props) => {
       valor_investido * ((valor / 12) * periodo) + valor_investido;
 
     setResultado({
-      valor_final: resultado,
+      valor_final: +resultado.toFixed(2),
       periodo: periodo,
       valor_investido: valor_investido,
     });
