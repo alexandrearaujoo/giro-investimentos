@@ -10,7 +10,7 @@ export const Main = styled.main`
   position: absolute;
   z-index: 2;
   background-color: white;
-  top: 50%;
+  top: 75%;
   left: 50%;
   transform: translateX(-50%) translateY(-55%);
   border-radius: 8px;
@@ -32,7 +32,8 @@ export const Main = styled.main`
     flex-direction: row;
     justify-content: space-around;
     height: 500px;
-    transform: translateX(-50%) translateY(-65%);
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
   }
 `;
 
