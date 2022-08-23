@@ -35,25 +35,7 @@ ChartJS.register(
   Legend
 );
 
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      display: false,
-    },
-    title: {
-      display: true,
-      text: "Resultado",
-    },
-  },
-};
-
-const labels = [
-  "Valor investido",
-  "Valor final",
-  "Porcentagem",
-  "Periodo em meses",
-];
+const labels = ["Valor investido", "Valor final", "Porcentagem"];
 
 interface SimulacaoProps {
   valor_investido: number;
@@ -68,17 +50,24 @@ const Dashboard = () => {
 
   const porcentagem = +Math.ceil((lucro / resultado.valor_investido) * 100);
 
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+      },
+      title: {
+        display: true,
+        text: `Resultando em ${resultado.periodo} mes(es)`,
+      },
+    },
+  };
+
   const data = {
     labels,
     datasets: [
       {
-        labels: "TESTE",
-        data: [
-          resultado.valor_investido,
-          resultado.valor_final,
-          porcentagem,
-          resultado.periodo,
-        ],
+        data: [resultado.valor_investido, resultado.valor_final, porcentagem],
         backgroundColor: [
           theme.colors.yellow,
           theme.colors.blue2,
