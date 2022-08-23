@@ -14,7 +14,8 @@
 
 ## Executando os testes
 
-- Digite ```yarn test``` no terminal
+- Rode o comando ```yarn``` para instalar todas as dependencias
+- Em seguida rode ```yarn test``` no terminal para executar os testes
 
 ## Tela de login
 
