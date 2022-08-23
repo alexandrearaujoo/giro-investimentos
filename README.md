@@ -14,7 +14,7 @@
 
 ## Executando os testes
 
-- Digite ```json yarn test``` no terminal
+- Digite ```yarn test``` no terminal
 
 ## Tela de login
 
